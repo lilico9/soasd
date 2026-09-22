@@ -423,6 +423,11 @@ function DoubanPageClient() {
             // 标签页（短剧/纪录片）
             data = await getTagPageData(currentPage * 25);
           } else if (type === 'anime' && primarySelection === '每日放送') {
+              data = {
+              code: 200,
+              message: 'success',
+              list: [],
+            };
           } else if (type === 'anime') {
             data = await getDoubanRecommends({
               kind: primarySelection === '番剧' ? 'tv' : 'movie',
