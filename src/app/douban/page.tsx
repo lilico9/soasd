@@ -126,7 +126,7 @@ function DoubanPageClient() {
       setPrimarySelection('最近热门');
       setSecondarySelection('show');
     } else if (type === 'anime') {
-      setPrimarySelection('每日放送');
+      setPrimarySelection('番剧');
       setSecondarySelection('全部');
     } else if (isTagPage) {
       setPrimarySelection('热门');
@@ -423,29 +423,6 @@ function DoubanPageClient() {
             // 标签页（短剧/纪录片）
             data = await getTagPageData(currentPage * 25);
           } else if (type === 'anime' && primarySelection === '每日放送') {
-            // 每日放送模式下，不进行数据请求，返回空数据
-            data = await getDoubanRecommends({
-              kind: primarySelection === '番剧' ? 'tv' : 'movie',
-              pageLimit: 25,
-              pageStart: currentPage * 25,
-              category: '动画',
-              format: primarySelection === '番剧' ? '电视剧' : '',
-              region: multiLevelValues.region
-                ? (multiLevelValues.region as string)
-                : '',
-              year: multiLevelValues.year
-                ? (multiLevelValues.year as string)
-                : '',
-              platform: multiLevelValues.platform
-                ? (multiLevelValues.platform as string)
-                : '',
-              sort: multiLevelValues.sort
-                ? (multiLevelValues.sort as string)
-                : '',
-              label: multiLevelValues.label
-                ? (multiLevelValues.label as string)
-                : '',
-            });
           } else if (type === 'anime') {
             data = await getDoubanRecommends({
               kind: primarySelection === '番剧' ? 'tv' : 'movie',
